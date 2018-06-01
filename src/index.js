@@ -1,10 +1,10 @@
 /* eslint-env browser */
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Root from './components/Root';
 
-const title = 'My Minimal React Webpack Babel Setup';
 ReactDOM.render(
-  <div>{title}</div>,
+  <Root />,
   document.getElementById('root'),
 );
 
