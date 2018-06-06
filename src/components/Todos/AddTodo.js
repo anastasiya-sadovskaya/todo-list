@@ -1,10 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import Button from '../layout/Button';
 
 const AddTodo = ({ dispatch }) => {
-  const nextID = 0;
+  let nextID = 1;
   let input = '';
   return (
         <div>
@@ -12,13 +13,17 @@ const AddTodo = ({ dispatch }) => {
             <Button label='Add' onClickHandler = {() => {
                 dispatch({
                     type: 'ADD_TODO',
-                    id: nextID + 1,
+                    id: nextID++,
                     text: input.value,
                 });
                 input.value = '';
             }} />
         </div>
   );
+};
+
+AddTodo.propTypes = {
+  dispatch: PropTypes.func.isRequired,
 };
 
 export default connect()(AddTodo);

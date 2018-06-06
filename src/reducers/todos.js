@@ -9,6 +9,16 @@ export default function todos(state = [{ id: 0, text: 'Add point', completed: fa
           completed: false,
         },
       ];
+    case 'TOGGLE_TODO':
+      return state.map((todo) => {
+        if (action.id !== todo.id) {
+          return todo;
+        }
+        return {
+          ...todo,
+          completed: !todo.completed,
+        };
+      });
     default:
       return state;
   }
