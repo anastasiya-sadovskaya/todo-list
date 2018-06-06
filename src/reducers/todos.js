@@ -1,4 +1,4 @@
-export default function todos(state = [{ id: 0, text: 'Add point', completed: false }], action) {
+export default function todos(state = [], action) {
   switch (action.type) {
     case 'ADD_TODO':
       return [
@@ -7,6 +7,7 @@ export default function todos(state = [{ id: 0, text: 'Add point', completed: fa
           id: action.id,
           text: action.text,
           completed: false,
+          inEditing: false,
         },
       ];
     case 'TOGGLE_TODO':
@@ -17,6 +18,27 @@ export default function todos(state = [{ id: 0, text: 'Add point', completed: fa
         return {
           ...todo,
           completed: !todo.completed,
+        };
+      });
+    case 'START_EDIT_TODO':
+      return state.map((todo) => {
+        if (action.id !== todo.id) {
+          return todo;
+        }
+        return {
+          ...todo,
+          inEditing: true,
+        };
+      });
+    case 'FINISH_EDIT_TODO':
+      return state.map((todo) => {
+        if (action.id !== todo.id) {
+          return todo;
+        }
+        return {
+          ...todo,
+          inEditing: false,
+          text: action.text,
         };
       });
     default:

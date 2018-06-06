@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import Button from '../layout/Button';
 
 const AddTodo = ({ dispatch }) => {
-  let nextID = 1;
+  let nextID = 0;
   let input = '';
   return (
         <div>
