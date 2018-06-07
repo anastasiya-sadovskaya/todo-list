@@ -10,7 +10,7 @@ const Todo = ({
   let input = '';
   return (
     <div>
-      {inEditing ? <input type="text" ref={(newText) => { input = newText; }} onBlur={() => { finishEditTodo(id, input); }}/>
+      {inEditing ? <input type="text" defaultValue={text} ref={(newText) => { input = newText; }} onBlur={() => { finishEditTodo(id, input); }} autoFocus='true'/>
                  : <span style={{ textDecoration: completed ? 'line-through' : 'none' }} onClick={onToggleTodoClick}>{text}</span>}
       <Button label="Edit" onClickHandler={onEditTodoClick} />
     </div>
@@ -32,7 +32,7 @@ export default connect(null, dispatch => ({
     dispatch({
       type: 'FINISH_EDIT_TODO',
       id,
-      text: newValue,
+      text: newValue.value,
     });
   },
 }))(Todo);
