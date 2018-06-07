@@ -41,6 +41,8 @@ export default function todos(state = [], action) {
           text: action.text,
         };
       });
+    case 'DELETE_TODO':
+      return state.filter(todo => action.id !== todo.id);
     default:
       return state;
   }

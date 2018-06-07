@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import Button from '../layout/Button';
 
 const Todo = ({
-  text, completed, id, inEditing, onToggleTodoClick, onEditTodoClick, finishEditTodo,
+  text, completed, id, inEditing, onToggleTodoClick, onEditTodoClick, finishEditTodo, onDeleteTodoClick,
 }) => {
   let input = '';
   return (
@@ -13,6 +13,7 @@ const Todo = ({
       {inEditing ? <input type="text" defaultValue={text} ref={(newText) => { input = newText; }} onBlur={() => { finishEditTodo(id, input); }} autoFocus='true'/>
                  : <span style={{ textDecoration: completed ? 'line-through' : 'none' }} onClick={onToggleTodoClick}>{text}</span>}
       <Button label="Edit" onClickHandler={onEditTodoClick} />
+      <Button label="Delete" onClickHandler={onDeleteTodoClick} />
     </div>
   );
 };
@@ -25,6 +26,7 @@ Todo.propTypes = {
   onToggleTodoClick: PropTypes.func.isRequired,
   onEditTodoClick: PropTypes.func.isRequired,
   finishEditTodo: PropTypes.func.isRequired,
+  onDeleteTodoClick: PropTypes.func.isRequired,
 };
 
 export default connect(null, dispatch => ({
